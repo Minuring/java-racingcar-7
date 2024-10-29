@@ -27,6 +27,18 @@ class DisplayImplTest {
     }
 
     @Test
+    public void 헤더를_출력할_수_있다() throws Exception {
+        //given
+        DisplayImpl display = new DisplayImpl();
+
+        //when
+        display.header();
+
+        //then
+        assertThat(CUSTOM_OUTPUT_STREAM.toString()).isEqualTo(Display.HEADER_LABEL);
+    }
+
+    @Test
     public void 게임의_과정을_출력할_수_있다() throws Exception {
         //given
         DisplayImpl display = new DisplayImpl();
@@ -39,9 +51,8 @@ class DisplayImplTest {
         display.progress(cars);
 
         //then
-        String resultLabel = "\n실행 결과\n";
         String expect = "A : -\nB : \nC : -\n\n";
-        assertThat(CUSTOM_OUTPUT_STREAM.toString()).isEqualTo(resultLabel + expect);
+        assertThat(CUSTOM_OUTPUT_STREAM.toString()).isEqualTo(expect);
     }
 
     @Test
@@ -54,7 +65,7 @@ class DisplayImplTest {
         display.winners(winners);
 
         //then
-        String expect = "최종 우승자 : A, C\n";
+        String expect = "최종 우승자 : A, C";
         assertThat(CUSTOM_OUTPUT_STREAM.toString()).isEqualTo(expect);
     }
 
@@ -68,7 +79,7 @@ class DisplayImplTest {
         display.winners(winners);
 
         //then
-        String expect = "최종 우승자 : A\n";
+        String expect = "최종 우승자 : A";
         assertThat(CUSTOM_OUTPUT_STREAM.toString()).isEqualTo(expect);
     }
 }

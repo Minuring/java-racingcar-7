@@ -7,6 +7,11 @@ import racingcar.domain.game.Display;
 public class MockDisplay implements Display {
 
     @Override
+    public void header() {
+        //do Nothing
+    }
+
+    @Override
     public void progress(List<Car> cars) {
         //do Nothing
     }
