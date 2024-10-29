@@ -5,8 +5,12 @@ import racingcar.domain.car.ForwardPolicy;
 
 public class RandomForwardPolicy implements ForwardPolicy {
 
+    private static final int SUCCESS_THRESHOLD = 4;
+    private static final int RANDOM_INT_FROM = 0;
+    private static final int RANDOM_INT_TO = 9;
+
     @Override
     public boolean forward() {
-        return 4 <= Randoms.pickNumberInRange(0, 9);
+        return SUCCESS_THRESHOLD <= Randoms.pickNumberInRange(RANDOM_INT_FROM, RANDOM_INT_TO);
     }
 }
