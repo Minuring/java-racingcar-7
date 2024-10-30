@@ -1,11 +1,14 @@
 package racingcar.application.converter;
 
-import racingcar.AppConfig;
-import racingcar.application.validation.Validator;
+import racingcar.application.validation.CountValidator;
 
 public class CountConverter extends InputStringConverter<Integer> {
 
-    private static final Validator validator = AppConfig.getInstance().countValidator();
+    private final CountValidator validator;
+
+    public CountConverter(CountValidator validator) {
+        this.validator = validator;
+    }
 
     @Override
     protected Integer doConvert(String count) {

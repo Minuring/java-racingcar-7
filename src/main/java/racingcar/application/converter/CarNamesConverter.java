@@ -1,13 +1,16 @@
 package racingcar.application.converter;
 
 import java.util.List;
-import racingcar.AppConfig;
-import racingcar.application.validation.Validator;
+import racingcar.application.validation.CarNamesValidator;
 import racingcar.domain.car.Car;
 
 public class CarNamesConverter extends InputStringConverter<List<Car>> {
 
-    private static final Validator validator = AppConfig.getInstance().carNamesValidator();
+    private final CarNamesValidator validator;
+
+    public CarNamesConverter(CarNamesValidator validator) {
+        this.validator = validator;
+    }
 
     @Override
     protected List<Car> doConvert(String rawString) {

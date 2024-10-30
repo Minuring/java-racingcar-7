@@ -1,6 +1,8 @@
 package racingcar;
 
 import java.util.List;
+import racingcar.application.config.AppConfig;
+import racingcar.application.config.BeanFactory;
 import racingcar.application.converter.CarNamesConverter;
 import racingcar.application.converter.CountConverter;
 import racingcar.domain.car.Car;
@@ -11,16 +13,20 @@ import racingcar.io.InputStringReader;
 
 public class Application {
 
-    private static final AppConfig appConfig = AppConfig.getInstance();
-
-    private static final InputStringReader reader = appConfig.inputStringReader();
-    private static final CarNamesConverter carNamesConverter = appConfig.carNamesConverter();
-    private static final CountConverter countConverter = appConfig.countConverter();
-
-    private static final Display display = appConfig.display();
-    private static final ForwardPolicy forwardPolicy = appConfig.forwardPolicy();
-
     public static void main(String[] args) {
+        BeanFactory beanFactory = null;
+        try {
+            beanFactory = BeanFactory.getInstance(AppConfig.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        InputStringReader reader = beanFactory.get(InputStringReader.class);
+        CarNamesConverter carNamesConverter = beanFactory.get(CarNamesConverter.class);
+        CountConverter countConverter = beanFactory.get(CountConverter.class);
+        Display display = beanFactory.get(Display.class);
+        ForwardPolicy forwardPolicy = beanFactory.get(ForwardPolicy.class);
+
         String rawCarNames = reader.readCarNames();
         List<Car> cars = carNamesConverter.convert(rawCarNames);
 
