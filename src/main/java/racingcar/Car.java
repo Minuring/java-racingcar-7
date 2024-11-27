@@ -6,8 +6,10 @@ public class Car {
 
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
+    public static final int START_POSITION = 0;
 
     private final String name;
+    private int position = START_POSITION;
 
     public Car(String name) {
         throwIfNameContainsWhiteSpace(name);
@@ -16,8 +18,18 @@ public class Car {
         this.name = name;
     }
 
+    public void moveForward(ForwardCondition condition) {
+        if (condition.test()) {
+            position++;
+        }
+    }
+
     public String getName() {
         return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     private void throwIfNameContainsWhiteSpace(String name) {

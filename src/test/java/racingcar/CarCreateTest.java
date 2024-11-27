@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class CarTest {
+public class CarCreateTest {
 
     @DisplayName("5자 이하의 이름을 가지는 자동차를 생성한다.")
     @ParameterizedTest
