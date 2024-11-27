@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.platform.commons.util.StringUtils;
+import racingcar.strategy.ForwardCondition;
 
 public class Car {
 
