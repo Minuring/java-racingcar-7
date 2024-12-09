@@ -13,6 +13,13 @@ public class InputView {
         return asListCarNames(input);
     }
 
+    public static int readRepetitions() {
+        System.out.println("시도할 횟수는 몇 회인가요?");
+        String input = Console.readLine();
+
+        return toInteger(input);
+    }
+
     private static List<Car> asListCarNames(String input) {
         String[] inputCarNames = input.split(",");
         if (inputCarNames.length < 2) {
@@ -22,5 +29,13 @@ public class InputView {
         return Arrays.stream(inputCarNames)
             .map(Car::new)
             .toList();
+    }
+
+    private static int toInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("횟수는 반드시 정수여야 합니다.");
+        }
     }
 }
