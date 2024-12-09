@@ -1,6 +1,7 @@
 package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +24,14 @@ public class RacingGameTest extends IOTest {
         car3 = new Car("Car3", 2, () -> true);
 
         racingGame = new RacingGame(List.of(car1, car2, car3));
+    }
+
+    @DisplayName("자동차가 두 대 미만인 경우 예외가 발생한다.")
+    @Test
+    void lessThanTwoCarsRaisesException() {
+        assertThatThrownBy(() -> new RacingGame(List.of(car1)))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("자동차가 최소 두 대 이상 있어야합니다.");
     }
 
     @DisplayName("자동차 경주 게임을 진행한다.")

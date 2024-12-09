@@ -8,6 +8,9 @@ public class RacingGame {
     private final List<Car> cars;
 
     public RacingGame(List<Car> cars) {
+        if (cars.size() < 2) {
+            throw new IllegalArgumentException("자동차가 최소 두 대 이상 있어야합니다.");
+        }
         this.cars = cars;
     }
 

@@ -22,10 +22,6 @@ public class InputView {
 
     private static List<Car> asListCarNames(String input) {
         String[] inputCarNames = input.split(",");
-        if (inputCarNames.length < 2) {
-            throw new IllegalArgumentException("자동차가 최소 두 대 이상 있어야합니다.");
-        }
-
         return Arrays.stream(inputCarNames)
             .map(Car::new)
             .toList();

@@ -22,15 +22,6 @@ class InputViewTest extends IOTest {
         assertThat(cars.get(1).getName()).isEqualTo("carB");
     }
 
-    @DisplayName("두 대 미만의 자동차를 입력한 경우 예외가 발생한다.")
-    @Test
-    void lessThanTwoCarsRaisesException() {
-        systemIn("carA");
-        assertThatThrownBy(InputView::readCars)
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("자동차가 최소 두 대 이상 있어야합니다.");
-    }
-
     @DisplayName("게임 진행 횟수를 읽어들인다.")
     @Test
     void readRepetitions() {
