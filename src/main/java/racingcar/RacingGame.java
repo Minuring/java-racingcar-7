@@ -16,6 +16,7 @@ public class RacingGame {
     public void proceed(int repetitions, ForwardCondition forwardCondition) {
         while (repetitions-- > 0) {
             cars.forEach(car -> car.moveForward(forwardCondition));
+            OutputView.printCars(cars);
         }
     }
 }

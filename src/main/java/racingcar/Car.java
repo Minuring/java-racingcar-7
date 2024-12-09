@@ -59,4 +59,10 @@ public class Car {
             throw new IllegalArgumentException("자동차 이름은 " + MAX_NAME_LENGTH + "자를 넘을 수 없습니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        String progress = "-".repeat(position);
+        return name + " : " + progress;
+    }
 }
