@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.Optional;
 import org.junit.platform.commons.util.StringUtils;
 import racingcar.strategy.ForwardCondition;
 
@@ -11,16 +12,30 @@ public class Car {
 
     private final String name;
     private int position = START_POSITION;
+    private Optional<ForwardCondition> forwardCondition = Optional.empty();
 
     public Car(String name) {
         throwIfNameContainsWhiteSpace(name);
         throwIfNameLengthOver(name);
-
         this.name = name;
     }
 
+    public Car(String name, int startPosition) {
+        this(name);
+        this.position = startPosition;
+    }
+
+    public Car(String name, int startPosition, ForwardCondition forwardCondition) {
+        this(name, startPosition);
+        this.forwardCondition = Optional.of(forwardCondition);
+    }
+
     public void moveForward(ForwardCondition condition) {
-        if (condition.test()) {
+        Boolean canMoveForward = this.forwardCondition
+            .map(ForwardCondition::test)
+            .orElseGet(condition::test);
+
+        if (canMoveForward) {
             position++;
         }
     }
