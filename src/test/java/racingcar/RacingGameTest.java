@@ -22,8 +22,7 @@ public class RacingGameTest extends IOTest {
         car2 = new Car("Car2", 1, () -> false);
         car3 = new Car("Car3", 2, () -> true);
 
-        racingGame = new RacingGame();
-        racingGame.addCars(car1, car2, car3);
+        racingGame = new RacingGame(List.of(car1, car2, car3));
     }
 
     @DisplayName("자동차 경주 게임을 진행한다.")
