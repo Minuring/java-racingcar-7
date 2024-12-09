@@ -19,4 +19,18 @@ public class RacingGame {
             OutputView.printCars(cars);
         }
     }
+
+    public List<Car> getWinners() {
+        int winnerPosition = getWinnerPosition();
+        return cars.stream()
+            .filter(car -> car.getPosition() == winnerPosition)
+            .toList();
+    }
+
+    private int getWinnerPosition() {
+        return cars.stream()
+            .max(Car::compareTo)
+            .map(Car::getPosition)
+            .orElse(Car.START_POSITION);
+    }
 }

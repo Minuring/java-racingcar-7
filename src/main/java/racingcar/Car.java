@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.junit.platform.commons.util.StringUtils;
 import racingcar.strategy.ForwardCondition;
 
-public class Car {
+public class Car implements Comparable<Car> {
 
     public static final int MIN_NAME_LENGTH = 1;
     public static final int MAX_NAME_LENGTH = 5;
@@ -64,5 +64,10 @@ public class Car {
     public String toString() {
         String progress = "-".repeat(position);
         return name + " : " + progress;
+    }
+
+    @Override
+    public int compareTo(Car another) {
+        return position - another.position;
     }
 }

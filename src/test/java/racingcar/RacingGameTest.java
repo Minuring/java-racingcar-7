@@ -2,6 +2,7 @@ package racingcar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,5 +43,14 @@ public class RacingGameTest extends IOTest {
         assertThat(systemOutput()).contains(
             "Car1 : -", "Car2 : -", "Car3 : ---",
             "Car1 : --", "Car2 : -", "Car3 : ----");
+    }
+
+    @DisplayName("자동차 경주 우승자를 알려준다.")
+    @Test
+    void getWinnersOfRacingGame() {
+        racingGame.proceed(5, new RandomForwardCondition());
+        List<Car> winners = racingGame.getWinners();
+
+        assertThat(winners).containsOnly(car3);
     }
 }
